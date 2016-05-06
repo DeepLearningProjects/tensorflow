@@ -131,8 +131,7 @@ tf.complex_abs(x) ==> [5.25594902, 6.60492229]
 
 // Declares cwise unary operations signature: 't -> 't
 #define UNARY()                      \
-  Input("x: T").Output("y: T").Attr( \
-      "T: {half, float, double, complex64}")
+  Input("x: T").Output("y: T")
 
 REGISTER_OP("Neg")
     .UNARY()
@@ -144,6 +143,7 @@ I.e., \\(y = -x\\).
 
 REGISTER_OP("Inv")
     .UNARY()
+    .Attr("T: {half, float, double, complex64}")
     .Doc(R"doc(
 Computes the reciprocal of x element-wise.
 I.e., \\(y = 1 / x\\).
@@ -159,6 +159,7 @@ I.e., \\(y = x * x = x^2\\).
 
 REGISTER_OP("Sqrt")
     .UNARY()
+    .Attr("T: {half, float, double, complex64}")
     .Doc(R"doc(
 Computes square root of x element-wise.
 I.e., \\(y = \sqrt{x} = x^{1/2}\\).
@@ -166,6 +167,7 @@ I.e., \\(y = \sqrt{x} = x^{1/2}\\).
 
 REGISTER_OP("Rsqrt")
     .UNARY()
+    .Attr("T: {half, float, double, complex64}")
     .Doc(R"doc(
 Computes reciprocal of square root of x element-wise.
 I.e., \\(y = 1 / \sqrt{x}\\).
@@ -173,12 +175,14 @@ I.e., \\(y = 1 / \sqrt{x}\\).
 
 REGISTER_OP("Exp")
     .UNARY()
+    .Attr("T: {half, float, double, complex64}")
     .Doc(R"doc(
 Computes exponential of x element-wise.  \\(y = e^x\\).
 )doc");
 
 REGISTER_OP("Log")
     .UNARY()
+    .Attr("T: {half, float, double, complex64}")
     .Doc(R"doc(
 Computes natural logarithm of x element-wise.
 I.e., \\(y = \log_e x\\).
@@ -186,6 +190,7 @@ I.e., \\(y = \log_e x\\).
 
 REGISTER_OP("Tanh")
     .UNARY()
+    .Attr("T: {half, float, double, complex64}")
     .Doc(R"doc(
 Computes hyperbolic tangent of `x` element-wise.
 )doc");
@@ -221,6 +226,7 @@ Computes the complementary error function of `x` element-wise.
 
 REGISTER_OP("Sigmoid")
     .UNARY()
+    .Attr("T: {half, float, double, complex64}")
     .Doc(R"doc(
 Computes sigmoid of `x` element-wise.
 
@@ -229,12 +235,14 @@ Specifically, `y = 1 / (1 + exp(-x))`.
 
 REGISTER_OP("Sin")
     .UNARY()
+    .Attr("T: {half, float, double, complex64}")
     .Doc(R"doc(
 Computes sin of x element-wise.
 )doc");
 
 REGISTER_OP("Cos")
     .UNARY()
+    .Attr("T: {half, float, double, complex64}")
     .Doc(R"doc(
 Computes cos of x element-wise.
 )doc");
