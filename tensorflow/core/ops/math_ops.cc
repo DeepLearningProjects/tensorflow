@@ -132,10 +132,11 @@ tf.complex_abs(x) ==> [5.25594902, 6.60492229]
 // Declares cwise unary operations signature: 't -> 't
 #define UNARY()                      \
   Input("x: T").Output("y: T").Attr( \
-      "T: {half, float, double, int32, complex64, int64}")
+      "T: {half, float, double, complex64}")
 
 REGISTER_OP("Neg")
     .UNARY()
+    .Attr("T: {half, float, double, int32, int64, complex64}")
     .Doc(R"doc(
 Computes numerical negative value element-wise.
 I.e., \\(y = -x\\).
@@ -150,6 +151,7 @@ I.e., \\(y = 1 / x\\).
 
 REGISTER_OP("Square")
     .UNARY()
+    .Attr("T: {half, float, double, int32, int64, complex64}")
     .Doc(R"doc(
 Computes square of x element-wise.
 I.e., \\(y = x * x = x^2\\).
@@ -190,12 +192,14 @@ Computes hyperbolic tangent of `x` element-wise.
 
 REGISTER_OP("Lgamma")
     .UNARY()
+    .Attr("T: {half, float, double}")
     .Doc(R"doc(
 Computes the log of the absolute value of `Gamma(x)` element-wise.
 )doc");
 
 REGISTER_OP("Digamma")
     .UNARY()
+    .Attr("T: {half, float, double}")
     .Doc(R"doc(
 Computes Psi, the derivative of Lgamma (the log of the absolute value of
 `Gamma(x)`), element-wise.
@@ -203,12 +207,14 @@ Computes Psi, the derivative of Lgamma (the log of the absolute value of
 
 REGISTER_OP("Erf")
     .UNARY()
+    .Attr("T: {half, float, double}")
     .Doc(R"doc(
 Computes the Gauss error function of `x` element-wise.
 )doc");
 
 REGISTER_OP("Erfc")
     .UNARY()
+    .Attr("T: {half, float, double}")
     .Doc(R"doc(
 Computes the complementary error function of `x` element-wise.
 )doc");
